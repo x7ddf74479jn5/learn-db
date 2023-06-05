@@ -1,0 +1,37 @@
+[
+  {
+    "name": "user_id",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "name",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "birthday",
+    "type": "DATE",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "gender",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "prefecture",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "register_date",
+    "type": "DATE",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "is_premium",
+    "type": "BOOLEAN",
+    "mode": "REQUIRED"
+  }
+]

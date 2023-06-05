@@ -1,0 +1,37 @@
+[
+  {
+    "name": "order_id",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "user_id",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "product_id",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "date_time",
+    "type": "DATETIME",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "quantity",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "revenue",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "is_proper",
+    "type": "BOOLEAN",
+    "mode": "REQUIRED"
+  }
+]

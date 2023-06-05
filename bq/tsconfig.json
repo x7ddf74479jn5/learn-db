@@ -1,0 +1,22 @@
+{
+  "extends": "@tsconfig/node-lts/tsconfig.json",
+  // TODO: ts-node is not compatible for typescript@5.0 yet
+  // "extends": [
+  //   "@tsconfig/node-lts/tsconfig.json",
+  //   "@tsconfig/strictest/tsconfig.json",
+  //   "@tsconfig/esm/tsconfig.json"
+  // ],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "module": "ESNext",
+    "noEmit": false,
+    "rootDir": "src",
+    "outDir": "lib",
+    "skipLibCheck": true
+  },
+  "ts-node": {
+    "swc": true,
+    "esm": true
+  },
+  "include": ["src"]
+}

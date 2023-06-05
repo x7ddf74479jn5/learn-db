@@ -1,0 +1,22 @@
+[
+  {
+    "name": "product_id",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "product_name",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "product_category",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "cost",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  }
+]

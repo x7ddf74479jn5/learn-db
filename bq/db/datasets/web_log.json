@@ -1,0 +1,37 @@
+[
+  {
+    "name": "cid",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "user_id",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "device",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "session_count",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "media",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "date_time",
+    "type": "DATETIME",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "page",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  }
+]
