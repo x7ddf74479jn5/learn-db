@@ -71,28 +71,28 @@ export function loadCSV() {
 
   const entries = src ? src : positionals;
 
-  const getCSVPaths = () => {
+  const getCSVPaths = (outerPaths: string[]) => {
     const filePaths: string[] = [];
-    const getFilePaths = (path: string[]) => {
-      for (const entry of entries) {
-        const stats = fs.statSync(entry);
+    const getFilePaths = (innnerPaths: string[]) => {
+      for (const path of innnerPaths) {
+        const stats = fs.statSync(path);
 
         if (stats.isDirectory()) {
-          getFilePaths(fs.readdirSync(entry));
+          getFilePaths(fs.readdirSync(path));
         } else if (stats.isFile()) {
-          filePaths.push(entry);
+          filePaths.push(path);
         }
       }
     };
 
-    getFilePaths(entries);
+    getFilePaths(outerPaths);
 
     const csvPaths = filePaths.filter((f) => path.extname(f) === ".csv");
 
     return csvPaths;
   };
 
-  const csvPaths = getCSVPaths();
+  const csvPaths = getCSVPaths(entries);
 
   for (const srcPath of csvPaths) {
     exec({ datasetId, tableId, srcPath }).catch((e) => {
