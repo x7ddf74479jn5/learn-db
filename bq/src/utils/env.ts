@@ -9,6 +9,8 @@ export const env = createEnv({
     DEFAULT_API: z.string().url(),
     DEFAULT_PROJECT_ID: z.string().min(1),
     DEFAULT_DATASET_ID: z.string().min(1),
+    DATASETS_DIR_PATH: z.string().min(1),
+    DB_CONFIG_DIR_PATH: z.string().min(1),
   },
   runtimeEnv: process.env,
 });

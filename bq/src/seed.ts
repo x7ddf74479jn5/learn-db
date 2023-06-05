@@ -7,9 +7,8 @@ import { dump } from "js-yaml";
 import { columnsSchema, Table } from "./schema/bq.js";
 import * as modelSchema from "./schema/model.js";
 import { env } from "./utils/env.js";
-import { DATASETS_DIR_PATH, DB_CONFIG_DIR_PATH } from "./utils/path.js";
 
-const { DEFAULT_DATASET_ID, DEFAULT_PROJECT_ID } = env;
+const { DEFAULT_DATASET_ID, DEFAULT_PROJECT_ID, DATASETS_DIR_PATH, DB_CONFIG_DIR_PATH } = env;
 
 const log = (...entry: any[]) => console.log("[bq:seed:debug]", ...entry);
 

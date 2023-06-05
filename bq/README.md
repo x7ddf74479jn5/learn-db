@@ -18,3 +18,15 @@ pnpm bq-zx seed
 // bq-node: CLI for interacting with BigQuery Emulator.
 // bq-zx: Wrapped CLI of 'bq' for interacting with BigQuery Emulator.
 ```
+
+### env example
+
+```
+STORAGE_EMULATOR_HOST=localhost:4443
+GOOGLE_APPLICATION_CREDENTIALS="./credentials.json"
+DEFAULT_API="http://0.0.0.0:9050"
+DEFAULT_PROJECT_ID="dc_sql"
+DEFAULT_DATASET_ID="dataset1"
+DATASETS_DIR_PATH="db/datasets"
+DB_CONFIG_DIR_PATH="db"
+```
