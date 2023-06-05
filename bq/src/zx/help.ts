@@ -8,9 +8,19 @@ export const helpText = `Wrapped CLI of 'bq' for interacting with BigQuery Emula
 USAGE: bq-zx [--global_flags]<command> [--command_flags][args]
 
 
-Any of the following commands:
-  head, help, ls query, shell, show, version
+Any of the following bq commands:
+  head, ls, query, shell, show, version
 
+bq-zx commands:
+  help, seed, sql
+
+
+seed                       Seed to BigQuery Emultor.
+
+sql                        Execute a query from a sql file.
+                            
+                           Exmples:
+                           bq-zx sql/query.sql
 
 head                       Displays rows in a table.
 
