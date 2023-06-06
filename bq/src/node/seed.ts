@@ -16,7 +16,7 @@ export const seed = async () => {
     allowPositionals: false,
   });
 
-  seedCore(args.values.debug).catch((error) => {
+  await seedCore(args.values.debug).catch((error) => {
     Logger.error("Unhandled error", error);
     process.exit(1);
   });

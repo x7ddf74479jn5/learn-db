@@ -5,9 +5,9 @@ import { Logger } from "./logger.js";
 import { seed } from "./seed.js";
 import { DEFAULT_GLOBAL_OPTIONS, GlobalOptions } from "../utils/option.js";
 
-const BQ_COMMANDS = ["ls", "shell", "head", "show", "query", "version"];
-const BQZX_COMMANDS = ["help", "sql", "seed"];
-const SUPPORTED_COMMANDS = [...BQ_COMMANDS, ...BQZX_COMMANDS];
+const BQ_COMMANDS = ["ls", "shell", "head", "show", "query", "version"] as const;
+const BQZX_COMMANDS = ["help", "sql", "seed"] as const;
+const SUPPORTED_COMMANDS = [...BQ_COMMANDS, ...BQZX_COMMANDS] as const;
 type SupportedCommands = (typeof SUPPORTED_COMMANDS)[number];
 
 /**
@@ -107,7 +107,11 @@ async function main() {
   const globalOptions: GlobalOptions = { api, project_id };
   const [cmd, ...targets] = __ ?? _;
 
-  if (!SUPPORTED_COMMANDS.includes(cmd)) {
+  const validateCommand = (cmd: string): cmd is SupportedCommands => {
+    return SUPPORTED_COMMANDS.includes(cmd as SupportedCommands);
+  };
+
+  if (!validateCommand(cmd)) {
     Logger.error("Unsupported command", cmd);
     showHelp();
     process.exit(1);

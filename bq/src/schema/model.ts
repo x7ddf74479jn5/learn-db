@@ -1,5 +1,21 @@
 import * as z from "zod";
 
+const dateSchema = z
+  .string()
+  .refine((val) => {
+    // HACK: passthrough empty string
+    if (val === "") return true;
+    const result = z.coerce.date().safeParse(val);
+    return result.success;
+  })
+  .transform((val) =>
+    val === ""
+      ? undefined
+      : new Date(val)
+          .toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" })
+          .replaceAll("/", "-")
+  );
+
 const dateTimeSchema = z
   .string()
   .refine((val) => {
@@ -8,15 +24,28 @@ const dateTimeSchema = z
     const result = z.coerce.date().safeParse(val);
     return result.success;
   })
-  .transform((val) => (val === "" ? undefined : val));
+  .transform((val) =>
+    val === ""
+      ? undefined
+      : new Date(val)
+          .toLocaleDateString("ja-JP", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          })
+          .replaceAll("/", "-")
+  );
 
 const customerSchema = z.object({
   user_id: z.number(),
   name: z.string(),
-  birthday: dateTimeSchema,
+  birthday: dateSchema,
   gender: z.number(),
   prefecture: z.string(),
-  register_date: dateTimeSchema,
+  register_date: dateSchema,
   is_premium: z.coerce.boolean(),
 });
 

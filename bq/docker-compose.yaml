@@ -7,9 +7,9 @@ services:
       - 9050:9050
     working_dir: /work
     volumes:
-      - ./db/datasets:/work/db/datasets
+      - ./db:/work/db
       - ~/.config/gcloud/application_default_credentials.json:/root/.config/gcloud/application_default_credentials.json
-    command: --project=${DEFAULT_PROJECT_ID} --data-from-yaml=db/datasets/data.yaml
+    command: --project=${DEFAULT_PROJECT_ID} --data-from-yaml=${DEFAULT_SEED_OUTPUT}
   gcs:
     image: fsouza/fake-gcs-server:latest
     container_name: gcs-emulator

@@ -17,6 +17,7 @@ pnpm bq-zx seed
 
 // bq-node: CLI for interacting with BigQuery Emulator.
 // bq-zx: Wrapped CLI of 'bq' for interacting with BigQuery Emulator.
+
 ```
 
 ### env example
@@ -29,4 +30,6 @@ DEFAULT_PROJECT_ID="dc_sql"
 DEFAULT_DATASET_ID="dataset1"
 DATASETS_DIR_PATH="db/datasets"
 DB_CONFIG_DIR_PATH="db"
+DEFAULT_SEED_OUTPUT="db/datasets/testdata.yaml"
+
 ```

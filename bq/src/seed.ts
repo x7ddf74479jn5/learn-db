@@ -36,7 +36,7 @@ export async function seedCore(debug?: boolean) {
         const data = await parseCSV(csvPath);
 
         if (debug) {
-          log("parsedCSV", data);
+          log("parsedCSV", data.slice(0, 3));
         }
 
         let modelName = model;
@@ -65,7 +65,7 @@ export async function seedCore(debug?: boolean) {
 
         return table;
       } catch (e) {
-        console.error("[bq] CSV parse Error", e);
+        console.error("[bq] CSV parse Error\n", e);
         process.exit(1);
       }
     })
@@ -75,6 +75,7 @@ export async function seedCore(debug?: boolean) {
 
   if (debug) {
     log("dumpResult", dumpResult);
+    process.exit(0);
   }
 
   const to = `${DB_CONFIG_DIR_PATH}/data.yaml`;
@@ -90,6 +91,7 @@ const parseCSV = async (srcPath: string, limit?: number) => {
     parse({
       columns: true,
       cast: true,
+      // cast_date: true,
       bom: true,
     })
   );
