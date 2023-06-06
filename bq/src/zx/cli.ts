@@ -61,7 +61,7 @@ const validateOptions = ({ targets, globalOptions }: { globalOptions: GlobalOpti
     project_id: globalOptions.project_id ?? DEFAULT_GLOBAL_OPTIONS.project_id,
   };
   const missingOptions = Object.keys(mergedGlobalOptions).filter(
-    (k) => globalOptions[k as keyof GlobalOptions] === undefined
+    (k) => mergedGlobalOptions[k as keyof GlobalOptions] === undefined
   );
 
   if (missingOptions.length > 0) {
