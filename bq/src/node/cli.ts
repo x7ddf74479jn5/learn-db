@@ -1,10 +1,10 @@
 import process from "node:process";
-import { Logger } from "./logger";
-import { help } from "./help";
-import { queryTable } from "./query-table";
-import { seed } from "./seed";
-import { query } from "./query";
-import { loadCSV } from "./load-csv";
+import { Logger } from "./logger.js";
+import { help } from "./commands/help.js";
+import { queryTable } from "./commands/query-table.js";
+import { seed } from "./commands/seed.js";
+import { query } from "./commands/query.js";
+import { loadCSV } from "./commands/load-csv.js";
 
 async function run(cmd: string) {
   switch (cmd) {

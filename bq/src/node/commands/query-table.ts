@@ -1,8 +1,8 @@
 import { parseArgs } from "node:util";
 
-import { env } from "../utils/env.js";
-import { Logger } from "./logger.js";
-import { createBQClient } from "./bq-client.js";
+import { env } from "../../utils/env.js";
+import { Logger } from "../logger.js";
+import { createBQClient } from "../bq-client.js";
 
 const { DEFAULT_DATASET_ID } = env;
 
@@ -38,10 +38,11 @@ export function queryTable() {
   });
 
   const { debug, input, dataset: datasetId } = args.values;
-  const positional = args.positionals[0];
+  const [_cmd, positional] = args.positionals;
 
   if (debug) {
     Logger.debug({ input, datasetId, positional });
+    process.exit(0);
   }
 
   const tableId = input || positional;

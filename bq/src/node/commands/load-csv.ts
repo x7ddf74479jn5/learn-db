@@ -2,10 +2,10 @@ import path from "node:path";
 import fs from "node:fs";
 import { parseArgs } from "node:util";
 
-import { env } from "../utils/env.js";
+import { env } from "../../utils/env.js";
 import { JobLoadMetadata } from "@google-cloud/bigquery";
-import { createBQClient } from "./bq-client.js";
-import { Logger } from "./logger.js";
+import { createBQClient } from "../bq-client.js";
+import { Logger } from "../logger.js";
 
 const { DEFAULT_DATASET_ID } = env;
 
@@ -25,7 +25,7 @@ async function exec({ datasetId, tableId, srcPath }: { datasetId: string; tableI
     throw errors;
   }
 }
-export function loadCSV() {
+export async function loadCSV() {
   const args = parseArgs({
     options: {
       dataset: {
@@ -53,10 +53,10 @@ export function loadCSV() {
   });
 
   const { debug, table: tableId, dataset: datasetId, src } = args.values;
-  const positionals = args.positionals;
+  const [_cmd, ...positionals] = args.positionals;
 
   if (debug) {
-    Logger.debug({ tableId, datasetId, src: src?.join(", "), positionals: positionals.join(", ") });
+    Logger.debug({ tableId, datasetId, src, positionals });
   }
 
   if (!tableId) {
@@ -69,7 +69,7 @@ export function loadCSV() {
     process.exit(1);
   }
 
-  const entries = src ? src : positionals;
+  const entries = src ? [...src, ...positionals] : positionals;
 
   const getCSVPaths = (outerPaths: string[]) => {
     const filePaths: string[] = [];
@@ -93,6 +93,10 @@ export function loadCSV() {
   };
 
   const csvPaths = getCSVPaths(entries);
+
+  if (debug) {
+    Logger.debug("csvPaths: ", csvPaths);
+  }
 
   for (const srcPath of csvPaths) {
     exec({ datasetId, tableId, srcPath }).catch((e) => {

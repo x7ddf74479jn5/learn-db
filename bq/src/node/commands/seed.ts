@@ -1,6 +1,6 @@
 import { parseArgs, ParseArgsConfig } from "node:util";
-import { Logger } from "./logger";
-import { seedCore } from "../seed";
+import { Logger } from "../logger.js";
+import { seedCore } from "../../seed.js";
 
 export const seed = async () => {
   const options = {
@@ -13,7 +13,7 @@ export const seed = async () => {
 
   const args = parseArgs({
     options,
-    allowPositionals: false,
+    allowPositionals: true,
   });
 
   await seedCore(args.values.debug).catch((error) => {

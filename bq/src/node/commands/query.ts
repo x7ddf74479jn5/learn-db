@@ -1,8 +1,8 @@
 import { parseArgs } from "node:util";
 import fs from "node:fs";
 
-import { Logger } from "./logger.js";
-import { createBQClient } from "./bq-client.js";
+import { Logger } from "../logger.js";
+import { createBQClient } from "../bq-client.js";
 
 const getSQLfromFile = (sqlPath: string) => {
   if (!fs.existsSync(sqlPath)) {
@@ -49,7 +49,7 @@ export async function query() {
   });
 
   const { input, debug } = args.values;
-  const positional = args.positionals[0];
+  const [_cmd, positional] = args.positionals;
 
   if (debug) {
     Logger.debug({ input, positional });
@@ -63,6 +63,11 @@ export async function query() {
   }
 
   const sql = getSQLfromFile(srcPath);
+
+  if (debug) {
+    Logger.debug("sql:", sql);
+    process.exit(0);
+  }
 
   exec(sql).catch((e) => {
     Logger.error("Unhandled error", e);
